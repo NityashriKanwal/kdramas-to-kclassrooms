@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-Dramas to K-Classrooms</title>
+<script>document.documentElement.className+=' js'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#4A2C4F; --plum-d:#3E2342; --plum-s:#6A4C6E;
+  --rose:#B83E73;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --serif:'Noto Serif KR','Noto Serif','Songti SC',Georgia,serif;
+  --sans:Inter,'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);color:var(--plum);background:#FFE9EF;overflow-x:clip}
+img,svg{max-width:100%}
+
+#bar{position:fixed;top:0;left:0;height:5px;width:0;z-index:100;border-radius:0 5px 5px 0;background:linear-gradient(90deg,#FF9EC4,#FFC7A0,#9FDDBF)}
+
+/* ================= HERO: a walk down the blossom path ================= */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;color:var(--plum-d);
+  background:linear-gradient(180deg,#CFE4F8 0%,#E6E7FA 26%,#FBE4EE 52%,#FFEEE4 76%,#FFE9EF 100%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:16vh;background:linear-gradient(transparent,#FFE9EF);z-index:5;pointer-events:none}
+.hero-top{position:relative;z-index:6;display:flex;justify-content:space-between;gap:1rem;padding:1.25rem 1.5rem;font-size:.8rem;font-weight:600;color:var(--plum-s)}
+.hero-copy{position:relative;z-index:6;padding:2vh 1.5rem 0;max-width:46rem;margin:0 auto;text-align:center}
+.hero h1{margin:0;font-family:var(--serif);font-weight:900;font-size:clamp(2.6rem,9.5vw,6.4rem);line-height:1.06;letter-spacing:-.02em;overflow-wrap:break-word;color:var(--plum-d);text-shadow:0 0 28px rgba(255,255,255,.9),0 2px 0 rgba(255,255,255,.6)}
+.hero h1 span{display:block;color:#C2467A}
+.hero .ko{margin:.9rem 0 .7rem;font:700 clamp(1.05rem,3.4vw,1.8rem)/1.2 var(--sans);letter-spacing:.18em;color:#7A4E9A;text-shadow:0 0 14px rgba(255,255,255,.9)}
+.hero p.lede{margin:0 auto;max-width:32rem;font-size:clamp(1rem,2.3vw,1.3rem);line-height:1.6;color:#5A3C5F;text-shadow:0 0 14px rgba(255,255,255,.95)}
+.hero svg.scene{position:absolute;left:0;bottom:0;width:100%;height:64%;z-index:2;display:block}
+@media (min-aspect-ratio:1/1){.hero svg.scene{height:min(100%,calc(100vw * .5834))}}
+.cue{position:absolute;z-index:6;left:0;right:0;bottom:1rem;text-align:center;font-size:.82rem;font-weight:600;color:var(--plum);text-shadow:0 0 10px rgba(255,255,255,.95);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+.petal{position:absolute;top:-5%;z-index:4;background:#FFB9D1;border-radius:100% 0 100% 0;opacity:.9;animation:fall linear infinite;will-change:transform;pointer-events:none}
+@keyframes fall{0%{transform:translate3d(0,-5vh,0) rotate(0)}50%{transform:translate3d(40px,55vh,0) rotate(180deg)}100%{transform:translate3d(-20px,110vh,0) rotate(360deg)}}
+
+/* ================= BEATS ================= */
+.beat{position:relative;background:var(--b)}
+.beat::before{content:"";position:absolute;left:0;right:0;top:-1px;height:14vh;background:linear-gradient(var(--prev,#fff),transparent);pointer-events:none;z-index:30}
+
+.branch{position:absolute;top:0;right:0;width:clamp(150px,32vw,320px);aspect-ratio:3/2;pointer-events:none;z-index:2}
+.branch.l{right:auto;left:0;transform:scaleX(-1)}
+.branch svg{width:100%;height:100%;display:block}
+
+.hgrow{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem}
+.ic{width:60px;height:60px;flex:none;filter:drop-shadow(0 4px 0 rgba(74,44,79,.12))}
+.hg{font:900 clamp(2.2rem,9vw,3.2rem)/1 var(--serif);color:transparent;-webkit-text-stroke:1.5px var(--accent)}
+.hg small{display:block;margin-top:.25rem;font:600 .78rem/1 var(--sans);-webkit-text-stroke:0;color:var(--accent)}
+.tag{display:inline-block;background:var(--accent);color:#fff;font:600 .8rem/1.2 var(--sans);padding:.5rem .85rem;border-radius:999px;transform:rotate(-2deg);margin-bottom:1rem}
+.beat h2{margin:0 0 1rem;font:900 clamp(1.8rem,7vw,2.8rem)/1.18 var(--serif);color:var(--plum-d);overflow-wrap:break-word}
+.body{font-size:1.0625rem;line-height:1.75;margin:0 0 1rem;color:var(--plum)}
+.pull{font-weight:600;border-left:4px solid var(--accent);padding-left:1rem}
+.note{font-size:.98rem;line-height:1.65;color:var(--plum-s);margin:0}
+.pair{display:grid;grid-template-columns:1fr;gap:.9rem;background:rgba(255,255,255,.75);padding:1rem;border-radius:16px;margin:.5rem 0}
+.pair span{display:block;font-size:.75rem;font-weight:600;color:var(--plum-s)}
+.pair b{display:block;font:900 1.5rem/1.2 var(--serif);color:var(--accent)}
+.pair em{font-style:normal;font-size:.75rem;color:var(--plum-s)}
+.box{background:rgba(255,255,255,.78);border-radius:16px;padding:1.1rem;font-size:1rem;line-height:1.7;margin:0}
+
+/* --- Text only --- */
+.t{padding:16vh 1.25rem}
+.t .in{max-width:40rem;margin:0 auto}
+.t .body{font-size:clamp(1.1rem,3.4vw,1.4rem);line-height:1.72}
+.t .big{margin:0;font:900 clamp(1.6rem,6vw,3rem)/1.3 var(--serif);text-align:center;color:var(--plum-d);overflow-wrap:break-word}
+.t .takeaway{margin:1.5rem 0 0;padding-left:1.1rem;border-left:5px solid var(--accent);font:600 clamp(1.2rem,4.4vw,1.9rem)/1.5 var(--serif);color:var(--plum-d)}
+.t .takeaway span{display:block;margin-bottom:.5rem;font:600 .8rem/1.3 var(--sans);color:var(--accent)}
+
+/* --- Text + visual (portrait: visual pinned on top of its own section) --- */
+.tv{display:flex;flex-direction:column}
+.vizcol{order:-1;position:sticky;top:0;z-index:20;width:100%;height:46vh;height:46svh;padding:10px;background:var(--b);display:flex}
+.tvtext{padding:0 1.25rem}
+.tvtext .pad{max-width:34rem;margin:0 auto;padding:4vh 0 18vh}
+.blk{min-height:68vh;min-height:68svh;display:flex;flex-direction:column;justify-content:center;padding:3vh 0}
+.js .blk{opacity:.35;transform:translateY(10px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .blk.on{opacity:1;transform:none}
+
+/* --- Visual only (with a sight painted behind it) --- */
+.v{height:240vh;color:var(--plum)}
+.v.v1{background:radial-gradient(ellipse 34% 5% at 18% 14%,rgba(255,255,255,.8),transparent),radial-gradient(ellipse 28% 4% at 82% 30%,rgba(255,255,255,.7),transparent),linear-gradient(180deg,#E0EEFF 0%,#F6E3F4 50%,#DDF4E8 100%)}
+.v.v2{background:radial-gradient(ellipse 30% 5% at 80% 12%,rgba(255,255,255,.8),transparent),radial-gradient(ellipse 34% 4% at 20% 34%,rgba(255,255,255,.7),transparent),linear-gradient(180deg,#EBE3FA 0%,#FFF3D9 55%,#FFE9EF 100%)}
+.vstick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;z-index:3}
+.scenery{position:absolute;left:0;right:0;bottom:0;height:34%;z-index:0;pointer-events:none}
+.scenery svg{width:100%;height:100%;display:block}
+.vin{position:relative;z-index:2;height:100%;max-width:60rem;margin:0 auto;padding:6vh 1.25rem 4vh;display:flex;flex-direction:column;justify-content:center;gap:1.25rem}
+.vhead h2{margin:0 0 .4rem;color:var(--plum-d);font-size:clamp(1.6rem,6vw,3rem)}
+.vhead p{margin:0;font-size:1rem;color:var(--rose);font-weight:600}
+.viz.wide{flex:1;min-height:0;max-height:62vh;height:auto}
+
+/* viz cards */
+.card{position:relative;overflow:hidden;width:100%;max-width:540px;height:100%;max-height:640px;margin:auto;padding:16px 18px;border-radius:24px;color:var(--plum);display:flex;flex-direction:column;
+  background:linear-gradient(165deg,#FFFFFF 0%,#FFF1F6 100%);border:1px solid rgba(184,62,115,.14);box-shadow:0 18px 40px rgba(184,62,115,.16)}
+.card::before{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,185,209,.55),transparent 70%);pointer-events:none}
+.viz{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:10px;height:100%;color:var(--plum);contain:layout;font-variant-numeric:tabular-nums}
+.kicker{font-size:.82rem;font-weight:600;color:var(--rose)}
+.bignum{display:flex;align-items:center;flex-wrap:wrap;font:900 clamp(2.3rem,9vw,3.8rem)/1 var(--serif);margin-top:4px;color:var(--plum-d)}
+.bignum .n{display:inline-block;min-width:5ch}
+.chip{display:inline-block;margin-left:.6rem;background:#FFE7A3;color:var(--plum-d);font:700 .8rem/1 var(--sans);padding:.3rem .55rem;border-radius:999px;white-space:nowrap}
+.src{margin:0;font-size:.68rem;line-height:1.4;color:rgba(74,44,79,.75)}
+.dots{display:grid;grid-template-columns:repeat(22,minmax(0,1fr));gap:3px}
+.dots i{aspect-ratio:1;border-radius:50%;background:rgba(74,44,79,.12);transition:background .2s,box-shadow .2s}
+.dots i.base.on{background:#FF8FB8}
+.dots i.new.on{background:#FFC94D;box-shadow:0 0 8px rgba(255,201,77,.8)}
+.yl{display:flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600}
+.trk{position:relative;flex:1;height:12px;border-radius:99px;background:rgba(74,44,79,.1)}
+.trk i{display:block;height:100%;width:0;border-radius:99px}
+.trk u{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--plum);opacity:.7}
+.g1{background:linear-gradient(90deg,#FF8FB8,#FFB98A)}
+.g2{background:linear-gradient(90deg,#7DB8F2,#9C8BF2)}
+.g3{background:linear-gradient(90deg,#63CDA2,#F2D268)}
+.g4{background:linear-gradient(90deg,#F58BB8,#A58BF2)}
+.rows{display:flex;flex-direction:column;gap:14px}
+.rl{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;font-size:.85rem;font-weight:600}
+.rl b{font:900 1.5rem/1 var(--serif);margin-left:auto;white-space:nowrap;color:var(--plum-d)}
+.rl .chip{margin-left:0}
+.s2{display:flex;align-items:center;gap:16px}
+.ringbox{position:relative;flex:none;width:clamp(80px,24vw,112px);aspect-ratio:1}
+.ringbox svg{width:100%;height:100%;display:block}
+.rc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.rc b{font:900 1.2rem/1 var(--serif);color:var(--plum-d)}
+.rc small{font-size:.5rem;line-height:1.2;opacity:.85;margin-top:2px;max-width:56px}
+.s2 .rows{flex:1;min-width:0;gap:12px}
+.city{--nmh:32px;position:relative;flex:1;min-height:0;display:flex;gap:10px;align-items:stretch;border-bottom:2px solid rgba(74,44,79,.3)}
+.tw{position:relative;flex:1;min-width:0}
+.bld{position:absolute;left:8%;right:8%;bottom:var(--nmh);height:0;border-radius:8px 8px 0 0;box-shadow:0 6px 16px rgba(184,62,115,.18);
+  background-image:radial-gradient(rgba(255,255,255,.95) 1.6px,transparent 2px),linear-gradient(180deg,var(--c1),var(--c2));background-size:11px 11px,100% 100%}
+.bld .val{position:absolute;left:-10px;right:-10px;top:-26px;text-align:center;font:900 1.05rem/1 var(--serif);white-space:nowrap;color:var(--plum-d)}
+.nm{position:absolute;left:-4px;right:-4px;bottom:0;height:calc(var(--nmh) - 6px);text-align:center;font-size:.66rem;font-weight:600;line-height:1.12;color:var(--plum)}
+.wide .bignum{font-size:clamp(3rem,11vw,6rem)}
+.wide .rl{font-size:1rem}.wide .rl b{font-size:clamp(1.7rem,6vw,2.8rem)}
+.wide .trk{height:clamp(16px,3.2vh,26px)}.wide .rows{gap:clamp(16px,4vh,34px)}
+.wide .chip{font-size:.95rem}
+.wide .src{font-size:.78rem}
+.wide .city{--nmh:44px;gap:clamp(8px,3vw,28px)}
+.wide .nm{font-size:clamp(.66rem,2vw,.9rem)}
+.wide .bld .val{font-size:clamp(1.05rem,3.4vw,1.7rem);top:-34px}
+
+/* footer */
+.foot{position:relative;overflow:hidden;color:var(--plum-d);padding:4rem 1.5rem 0;background:linear-gradient(180deg,#FFE9EF 0%,#FFD6E4 100%)}
+.foot>*{position:relative}
+.foot h3{margin:0 0 .75rem;font:900 1.6rem/1.2 var(--serif)}
+.foot ul{margin:0;padding-left:1.1rem;max-width:40rem;font-size:.92rem;line-height:1.7}
+.foot svg{display:block;width:100%;height:240px;margin-top:2rem}
+
+/* ---------- breakpoints ---------- */
+@media (min-width:640px){.pair{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px), (min-width:700px) and (orientation:landscape){
+  .t{padding:20vh 2rem}
+  .body{font-size:1.125rem}
+  .tv{flex-direction:row}
+  .tv.flip{flex-direction:row-reverse}
+  .vizcol{order:0;width:50%;height:100vh;height:100svh;padding:clamp(12px,5svh,48px) clamp(16px,3vw,48px);align-self:flex-start;background:transparent}
+  .tvtext{width:50%;padding:0 clamp(1.5rem,4vw,3.5rem) 0 clamp(2rem,5vw,4.5rem)}
+  .tv.flip .tvtext{padding:0 clamp(2rem,5vw,4.5rem) 0 clamp(1.5rem,4vw,3.5rem)}
+  .card{padding:22px 26px;height:min(78vh,640px);height:min(78svh,640px)}
+  .ic{width:72px;height:72px}
+  .v{height:260vh}
+}
+@media (min-width:1024px){.hero-top{padding-left:4rem;padding-right:4rem}}
+@media (max-height:700px){.hero-top{padding-block:.8rem}}
+@media (max-height:700px) and (orientation:portrait){
+  .vizcol{height:50vh;height:50svh}
+  .card{padding:14px 16px}
+  .card .bignum{font-size:2.2rem}
+  .card .src{font-size:.62rem}
+}
+@media (max-height:520px){
+  .card{padding:12px 16px}
+  .card .bignum{font-size:2.1rem}
+  .card .src{font-size:.6rem}
+  .viz{gap:6px}
+  .vin{padding:3vh 1.25rem;gap:.5rem}
+  .vhead p{display:none}
+  .vhead h2{font-size:1.4rem}
+  .hero p.lede{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .blk{transition:none;opacity:1;transform:none}
+  .cue,.petal{animation:none}.petal{display:none}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="hero">
+  <div class="hero-top"><span>Data editorial</span><span>Fergusson College</span></div>
+  <div class="hero-copy">
+    <h1>K-Dramas to <span>K-Classrooms</span></h1>
+    <div class="ko" lang="ko">드라마에서 교실로</div>
+    <p class="lede">Have Korean dramas ignited a new wave of Indian students to the shores of Seoul? Explore how soft power reshapes where opportunity lies.</p>
+  </div>
+  <svg class="scene" id="scene" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="sunH"><stop offset="0" stop-color="#FFF3C4" stop-opacity=".9"/><stop offset="1" stop-color="#FFF3C4" stop-opacity="0"/></radialGradient>
+      <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFEBD7"/><stop offset="1" stop-color="#E6F6E4"/></linearGradient>
+    </defs>
+  </svg>
+  <div class="cue">Scroll to start the walk ↓</div>
+</header>
+
+<main id="story">
+
+  <!-- 1 · TEXT ONLY -->
+  <section class="beat t" style="--b:#FFE9EF;--prev:#FFE9EF;--accent:#B83E73">
+    <div class="branch"><svg viewBox="0 0 300 200" aria-hidden="true"></svg></div>
+    <div class="in">
+      <div class="hgrow">
+        <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><path d="M22 16L14 6M42 16l8-10" stroke="#4A2C4F" stroke-width="3" stroke-linecap="round"/><rect x="5" y="16" width="54" height="38" rx="7" fill="#FF8FB8"/><rect x="10" y="21" width="44" height="28" rx="3" fill="#FFF3F7"/><path d="M28 28l13 7-13 7z" fill="#F4A340"/></svg>
+        <div class="hg" lang="ko">드라마<small>drama</small></div>
+      </div>
+      <span class="tag">Phase 1: The digital ignition</span>
+      <h2>The Screen-to-Classroom Trajectory</h2>
+      <p class="body">While K-Dramas have been dominating Indian OTT viewership in recent years, the Hallyu Wave’s immersion has transcended into the academic sphere. What was once a casual curiosity has now become the catalyst of why Indian students are considering higher education and career opportunities outside the Anglosphere.</p>
+    </div>
+  </section>
+
+  <!-- 2 · TEXT + VISUAL (visual right) -->
+  <section class="beat tv" style="--b:#FFE9EF;--prev:#FFE9EF;--accent:#B83E73">
+    <div class="vizcol"><div class="card"><div class="viz" data-viz="dots" role="group" aria-label="Chart: Indian students in South Korea rose from 526 in 2020 to 1,095 in 2024"></div></div></div>
+    <div class="tvtext"><div class="pad">
+      <div class="blk">
+        <p class="body pull">According to the Ministry of External Affairs (MEA) Outbound Student Migration Corridor Dataset, the number of Indian students travelling to South Korea rose sharply from <strong>526 in 2020</strong> to <strong>1,095 in 2024</strong>, more than doubling in four years.</p>
+      </div>
+      <div class="blk">
+        <p class="note">Netflix India’s Weekly Top 10 data further validates this trajectory: Korean titles regularly accounted for 20% to 40% of listed productions, maintaining massive engagement.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 3 · TEXT ONLY -->
+  <section class="beat t" style="--b:#E0EEFF;--prev:#FFE9EF;--accent:#2F63A8">
+    <div class="branch l"><svg viewBox="0 0 300 200" aria-hidden="true"></svg></div>
+    <div class="in">
+      <div class="hgrow">
+        <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="10" width="52" height="44" rx="5" fill="#8DB8EE"/><path d="M32 10v44" stroke="#fff" stroke-width="2"/><text x="19" y="39" font-size="17" fill="#fff" text-anchor="middle" font-family="Noto Serif KR,serif" font-weight="900">가</text><text x="45" y="39" font-size="17" fill="#FFF3C4" text-anchor="middle" font-family="Noto Serif KR,serif" font-weight="900">나</text></svg>
+        <div class="hg" lang="ko">한국어<small>Korean language</small></div>
+      </div>
+      <span class="tag">Phase 2: Academic indicators</span>
+      <h2>The Academic Surge (TOPIK)</h2>
+      <p class="body">Official TOPIK (Test of Proficiency in Korean) figures reflect a similar upward trend following the lifting of pandemic restrictions. The language barrier is no longer a deterrent. It is a hurdle Indian students are actively rushing to clear.</p>
+      <div class="pair">
+        <div><span>Applications</span><b>1,383 → 2,928</b><em>More than doubled between 2022 and 2025</em></div>
+        <div><span>Actual test-takers</span><b>1,052 → 2,122</b><em>Sustained testing growth, 2022 to 2025</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · VISUAL ONLY (Gyeongbokgung behind) -->
+  <section class="beat v v1" style="--prev:#E0EEFF">
+    <div class="vstick">
+      <div class="scenery"><svg id="scn-palace" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"></svg></div>
+      <div class="vin">
+        <div class="vhead"><h2>TOPIK in India</h2><p>Scroll to watch applications and test-takers climb</p></div>
+        <div class="viz wide" data-viz="topik" role="group" aria-label="Chart: TOPIK applications grew from 1,383 in 2022 to 2,928 in 2025, and test-takers from 1,052 in 2022 to 2,122 in 2025"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · TEXT + VISUAL (visual left) -->
+  <section class="beat tv flip" style="--b:#DDF4E8;--prev:#DDF4E8;--accent:#2A7A59">
+    <div class="vizcol"><div class="card"><div class="viz" data-viz="market" role="group" aria-label="Chart: Korean imports are 34% of Blinkit instant-noodle sales; India's K-beauty market grows from $400 million to $1.5 billion by 2030"></div></div></div>
+    <div class="tvtext"><div class="pad">
+      <div class="blk">
+        <div class="hgrow">
+          <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 24c0-8 7-8 7-15M32 24c0-8 7-8 7-15M46 24c0-8 7-8 7-15" stroke="#7FD3B0" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M6 30h52a26 26 0 0 1-52 0z" fill="#FFB27A"/><rect x="22" y="54" width="20" height="5" rx="2.5" fill="#4A2C4F"/><path d="M14 36h36" stroke="#FFF3C4" stroke-width="3" stroke-linecap="round"/></svg>
+          <div class="hg" lang="ko">라면<small>ramyeon</small></div>
+        </div>
+        <div><span class="tag">Phase 3: Market presence</span></div>
+        <h2>Commercial Footprints</h2>
+        <p class="body">The reach of Korean culture is equally visible in India’s hyper-local food delivery apps and beauty shelves, creating a structural consumer framework around the academic wave.</p>
+      </div>
+      <div class="blk">
+        <p class="body pull">Datum Intelligence reports that South Korean imports represent a massive <strong>34% of Blinkit's instant-noodle sales</strong>, with Samyang’s iconic Buldak ramyeon series single-handedly driving 18% of that weight.</p>
+      </div>
+      <div class="blk">
+        <p class="box">Simultaneously, a joint Datum Intelligence–Kindlife report projects India’s K-beauty market to balloon from USD 400 million in 2024 to <strong>USD 1.5 billion by 2030</strong>, scaling active buyers from 11.9 million to over 27 million.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 6 · TEXT ONLY -->
+  <section class="beat t" style="--b:#EBE3FA;--prev:#DDF4E8;--accent:#6446B0">
+    <div class="branch"><svg viewBox="0 0 300 200" aria-hidden="true"></svg></div>
+    <div class="in">
+      <div class="hgrow">
+        <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><circle cx="46" cy="16" r="9" fill="#FFE9A8"/><path d="M3 36Q22 36 32 22Q42 36 61 36Q50 36 46 42H18Q14 36 3 36z" fill="#A6B5D6"/><rect x="18" y="42" width="28" height="14" fill="#FFF3E4"/><rect x="28" y="46" width="8" height="10" fill="#EE9AA6"/></svg>
+        <div class="hg" lang="ko">미래<small>future</small></div>
+      </div>
+      <span class="tag">Conclusion: Future horizons</span>
+      <h2>Beyond the Screen</h2>
+      <p class="body">Interviews with Korean-language teachers conducted through the Republic of Korea’s Embassy in India suggest that parents are actively encouraging young people to pursue opportunities in Korea as traditional Anglocentric education routes become increasingly saturated.</p>
+      <div class="takeaway"><span>Takeaway from interviews with two Korean-language teachers</span>Language proficiency alone is insufficient and should be combined with expertise in fields such as STEM, semiconductors, or corporate trade to secure strategic employment.</div>
+    </div>
+  </section>
+
+  <!-- 7 · VISUAL ONLY (Namsan Tower behind) -->
+  <section class="beat v v2" style="--prev:#EBE3FA">
+    <div class="vstick">
+      <div class="scenery"><svg id="scn-namsan" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"></svg></div>
+      <div class="vin">
+        <div class="vhead"><h2>How tall has each number grown?</h2><p>Every tower starts at 1× and rises to its growth multiple</p></div>
+        <div class="viz wide" data-viz="towers" role="group" aria-label="Chart: growth multiples. Students to Korea 2.1 times, TOPIK applications 2.1 times, TOPIK test-takers 2.0 times, K-beauty market 3.8 times (projected)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · TEXT ONLY -->
+  <section class="beat t" style="--b:#FFE9EF;--prev:#FFE9EF;--accent:#B83E73">
+    <div class="branch l"><svg viewBox="0 0 300 200" aria-hidden="true"></svg></div>
+    <div class="in"><p class="big">Ultimately, South Korea’s soft power demonstrates how cultural immersion can fully reshape conventional ideas of where global opportunity lies.</p></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <h3>Sources</h3>
+  <ul>
+    <li>Ministry of External Affairs, Outbound Student Migration Corridor Dataset</li>
+    <li>TOPIK official figures for India</li>
+    <li>Netflix India Weekly Top 10</li>
+    <li>Datum Intelligence; Datum Intelligence–Kindlife report on K-beauty</li>
+    <li>Interviews with Korean-language teachers, via the Embassy of the Republic of Korea in India</li>
+  </ul>
+  <svg id="footscene" viewBox="0 300 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"></svg>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  const fmt=n=>Math.round(n).toLocaleString('en-IN');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sideBySide=matchMedia('(min-width:1024px), (min-width:700px) and (orientation:landscape)');
+
+  /* ================= Illustrations (drawn in code, so no image files to break) ================= */
+  const NS='http://www.w3.org/2000/svg';
+  const mk=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+  function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  const PINKS=['#FFC9DC','#FFD9E6','#FFB7D0','#FFE8F0','#FFCFE0','#FFF4F8'];
+  const PAL={roof:'#A6B5D6',edge:'#7F90B8',wall:'#FFF3E4',pillar:'#EE9AA6'};
+
+  // Korean-style roof with upturned eaves
+  function roof(g,cx,y,w,h,fill,edge){
+    const l=cx-w/2, r=cx+w/2;
+    mk('path',{d:`M${cx-w*.3} ${y}L${cx+w*.3} ${y}Q${r-w*.1} ${y+h*.7} ${r} ${y+h*.58}Q${r-w*.02} ${y+h} ${r-w*.09} ${y+h}L${l+w*.09} ${y+h}Q${l+w*.02} ${y+h} ${l} ${y+h*.58}Q${l+w*.1} ${y+h*.7} ${cx-w*.3} ${y}Z`,fill},g);
+    mk('rect',{x:cx-w*.32,y:y-h*.12,width:w*.64,height:h*.14,rx:h*.07,fill:edge},g);
+  }
+  function pillars(g,x,y,w,h,n,col){const pw=Math.max(1.2,w*.018);for(let i=0;i<=n;i++)mk('rect',{x:x+i*(w-pw)/n,y,width:pw,height:h,fill:col},g)}
+  function band(g,x,y,w,h){const cols=['#8FD1C2','#8FB6E8','#F3A0A8','#FFE08A'];const n=Math.max(2,Math.floor(w/(h*1.6))),cw=w/n;for(let i=0;i<n;i++)mk('rect',{x:x+i*cw,y,width:cw,height:h,fill:cols[i%4]},g)}
+
+  // Geunjeongjeon (throne hall, Gyeongbokgung)
+  function hall(g,cx,baseY,s){
+    [[380,'#F2EAF4'],[344,'#EBE2EF'],[308,'#E4DAE9']].forEach(([w,c],i)=>mk('rect',{x:cx-w*s/2,y:baseY-(i+1)*8*s,width:w*s,height:8*s,fill:c},g));
+    const yb=baseY-24*s, lbh=34*s, lbt=yb-lbh;
+    mk('rect',{x:cx-135*s,y:lbt,width:270*s,height:lbh,fill:PAL.wall},g); pillars(g,cx-135*s,lbt,270*s,lbh,8,PAL.pillar); band(g,cx-135*s,lbt,270*s,5*s);
+    const lry=lbt-30*s;
+    roof(g,cx,lry,330*s,32*s,PAL.roof,PAL.edge);
+    const ubh=22*s, ubt=lry-14*s;
+    mk('rect',{x:cx-80*s,y:ubt,width:160*s,height:ubh,fill:PAL.wall},g); pillars(g,cx-80*s,ubt,160*s,ubh,5,PAL.pillar); band(g,cx-80*s,ubt,160*s,4*s);
+    roof(g,cx,ubt-34*s,215*s,36*s,PAL.roof,PAL.edge);
+  }
+  // Gwanghwamun (main gate)
+  function gate(g,cx,baseY,s){
+    mk('rect',{x:cx-150*s,y:baseY-44*s,width:300*s,height:44*s,fill:'#EAE2ED'},g);
+    mk('rect',{x:cx-156*s,y:baseY-50*s,width:312*s,height:7*s,rx:2*s,fill:'#DDD3E4'},g);
+    [[-92,44,34],[0,56,40],[92,44,34]].forEach(([dx,w,h])=>{
+      const x=cx+dx*s-w*s/2, ry=w/2*s, top=baseY-(h-w/2)*s;
+      mk('path',{d:`M${x} ${baseY}V${top}A${ry} ${ry} 0 0 1 ${x+w*s} ${top}V${baseY}Z`,fill:'#8B79A0'},g);
+    });
+    const by=baseY-78*s;
+    mk('rect',{x:cx-118*s,y:by,width:236*s,height:28*s,fill:PAL.wall},g); pillars(g,cx-118*s,by,236*s,28*s,7,PAL.pillar); band(g,cx-118*s,by,236*s,4*s);
+    roof(g,cx,by-34*s,300*s,36*s,PAL.roof,PAL.edge);
+  }
+  // N Seoul Tower on Namsan
+  function tower(g,x,baseY,s){
+    mk('rect',{x:x-10*s,y:baseY-8*s,width:20*s,height:8*s,rx:2*s,fill:'#EADFE8'},g);
+    mk('rect',{x:x-3*s,y:baseY-72*s,width:6*s,height:64*s,fill:'#FAF1F5',stroke:'#D9BFCB','stroke-width':.8*s},g);
+    mk('rect',{x:x-15*s,y:baseY-86*s,width:30*s,height:15*s,rx:7*s,fill:'#FFFFFF',stroke:'#E8B4C8','stroke-width':1*s},g);
+    mk('rect',{x:x-12*s,y:baseY-81*s,width:24*s,height:4*s,fill:'#FFD6E4'},g);
+    mk('rect',{x:x-9*s,y:baseY-92*s,width:18*s,height:6*s,rx:3*s,fill:'#FAF1F5',stroke:'#E8B4C8','stroke-width':.8*s},g);
+    mk('path',{d:`M${x} ${baseY-92*s}V${baseY-116*s}`,stroke:'#D9BFCB','stroke-width':2*s},g);
+    mk('circle',{cx:x,cy:baseY-117*s,r:2.4*s,fill:'#F58FB5'},g);
+  }
+  // Cherry blossom tree (dir: +1 canopy leans right, -1 left)
+  function tree(g,x,yb,s,r,dir){
+    const th=250*s, tw=15*s, tx=x+dir*30*s;
+    mk('path',{d:`M${x-tw} ${yb}Q${x-tw*.4+dir*10*s} ${yb-th*.5} ${tx-tw*.3} ${yb-th}L${tx+tw*.3} ${yb-th}Q${x+tw*.6+dir*10*s} ${yb-th*.5} ${x+tw} ${yb}Z`,fill:'#8A6574'},g);
+    mk('path',{d:`M${x+dir*18*s} ${yb-th*.7}Q${x+dir*60*s} ${yb-th*.85} ${x+dir*85*s} ${yb-th}`,stroke:'#8A6574','stroke-width':Math.max(1,4*s),fill:'none','stroke-linecap':'round'},g);
+    const cx=x+dir*40*s, cy=yb-300*s, R=110*s, N=Math.round(9+15*s);
+    for(let i=0;i<Math.ceil(N/4);i++){const a=r()*6.283,d=Math.sqrt(r());mk('circle',{cx:(cx+Math.cos(a)*d*R*1.1).toFixed(1),cy:(cy+Math.sin(a)*d*R*.6).toFixed(1),r:((12+r()*8)*s+3).toFixed(1),fill:'#FFB3CE',opacity:.55},g)}
+    for(let i=0;i<N;i++){const a=r()*6.283,d=Math.sqrt(r());mk('circle',{cx:(cx+Math.cos(a)*d*R*1.15).toFixed(1),cy:(cy+Math.sin(a)*d*R*.62).toFixed(1),r:((7+r()*9)*s*1.1+2).toFixed(1),fill:PINKS[Math.floor(r()*PINKS.length)],opacity:.93},g)}
+  }
+  function cloud(g,x,y,k,op){const c=mk('g',{opacity:op||.85},g);[[0,0,34],[26,-8,26],[-26,-5,24],[50,2,20]].forEach(([dx,dy,rr])=>mk('circle',{cx:x+dx*k,cy:y+dy*k,r:rr*k,fill:'#fff'},c))}
+
+  /* ---------- Hero: Gyeongbokgung ahead, Namsan Tower behind, blossom path ---------- */
+  const heroLayers=[];
+  (function(){
+    const svg=$('#scene'), r=rng(21);
+    const layer=(f)=>{const g=mk('g',{class:'layer'},svg);heroLayers.push({g,f});return g};
+    // far: sun, clouds, mountains, Namsan
+    const far=layer(.05);
+    mk('circle',{cx:440,cy:150,r:110,fill:'url(#sunH)'},far);
+    mk('circle',{cx:440,cy:150,r:42,fill:'#FFF1BE'},far);
+    cloud(far,250,120,1,.9); cloud(far,820,90,1.2,.85); cloud(far,1010,190,.8,.8); cloud(far,640,60,.7,.7);
+    mk('path',{d:'M90 412C250 330 380 250 480 216C560 192 640 192 720 214C830 244 930 320 1110 412Z',fill:'#DCD5EE'},far);       // Bugaksan
+    mk('path',{d:'M-40 412C60 350 190 318 300 322C380 326 440 360 480 412Z',fill:'#E7E1F4'},far);
+    mk('path',{d:'M640 412C690 330 730 270 770 262C820 270 870 330 920 412Z',fill:'#CBE5D6'},far);                                // Namsan
+    tower(far,770,264,1);
+    // mid: palace
+    const mid=layer(.14);
+    mk('rect',{x:120,y:366,width:960,height:48,fill:'#F3E8EC'},mid);
+    mk('rect',{x:120,y:358,width:960,height:10,rx:3,fill:'#B3BFDC'},mid);
+    hall(mid,600,372,1.05);
+    // ground
+    const ground=layer(.28);
+    mk('rect',{x:-40,y:410,width:1280,height:300,fill:'url(#grass)'},ground);
+    mk('path',{d:'M574 412H626L874 700H326Z',fill:'#FFEFE6'},ground);
+    for(let i=1;i<=10;i++){const t=Math.pow(i/10,1.6),y=lerp(412,700,t),hw=lerp(26,274,t);mk('path',{d:`M${600-hw} ${y}H${600+hw}`,stroke:'#F3D9CF','stroke-width':lerp(1,3.2,t)},ground)}
+    mk('path',{d:'M574 412L326 700M626 412L874 700',stroke:'#F7C9D8','stroke-width':3,fill:'none'},ground);
+    for(let i=0;i<70;i++){const y=424+r()*276, x=100+r()*1000, sz=1.4+(y-412)/288*5;mk('ellipse',{cx:x.toFixed(0),cy:y.toFixed(0),rx:(sz*1.3).toFixed(1),ry:sz.toFixed(1),fill:PINKS[Math.floor(r()*4)],transform:`rotate(${(r()*180).toFixed(0)} ${x.toFixed(0)} ${y.toFixed(0)})`,opacity:.9},ground)}
+    // gate in front of the wall
+    const gt=layer(.2);
+    gate(gt,600,414,1.1);
+    // trees: far -> near, three depth bands for parallax
+    const bands=[layer(.38),layer(.65),layer(1)];
+    [1,.7,.45,.2,0].forEach((t,i)=>{
+      const yb=lerp(700,420,Math.pow(t,.75)), hw=25+245*(yb-412)/288, off=lerp(120,16,Math.pow(t,.6)), s=lerp(1.4,.2,Math.pow(t,.7));
+      const g=bands[t>=.6?0:t>=.3?1:2];
+      tree(g,600-hw-off,yb,s,r,1); tree(g,600+hw+off,yb,s,r,-1);
+    });
+  })();
+
+  // footer: reuse the lower part of the scene
+  const fsvg=$('#footscene');
+  $('#scene').querySelectorAll('.layer').forEach(l=>fsvg.appendChild(l.cloneNode(true)));
+
+  /* ---------- Scenery behind the two visual-only sections ---------- */
+  (function(){
+    const r=rng(5), s1=$('#scn-palace'), s2=$('#scn-namsan');
+    // Gyeongbokgung
+    mk('path',{d:'M150 300C300 205 400 135 520 122C650 108 760 142 900 222C960 257 1010 282 1060 300Z',fill:'#DCD5EE'},s1);
+    mk('rect',{x:230,y:262,width:740,height:30,fill:'#F3E8EC'},s1);
+    mk('rect',{x:230,y:255,width:740,height:9,rx:3,fill:'#B3BFDC'},s1);
+    hall(s1,600,292,1);
+    mk('rect',{x:-20,y:288,width:1240,height:20,fill:'#CFEBD7'},s1);
+    tree(s1,170,300,.6,r,1); tree(s1,1030,300,.6,r,-1);
+    cloud(s1,260,70,.9,.8); cloud(s1,930,50,.7,.7);
+    // Namsan Tower
+    mk('path',{d:'M-60 300C120 230 300 170 470 156C650 144 850 200 1260 300Z',fill:'#CBE5D6'},s2);
+    mk('path',{d:'M300 300C420 235 540 190 640 180C760 172 900 220 1100 300Z',fill:'#D8EEDF'},s2);
+    tower(s2,470,160,1.15);
+    [[150,262,.5,1],[260,225,.45,1],[690,212,.5,-1],[860,232,.55,-1],[1050,268,.6,-1]].forEach(([x,y,s,d])=>tree(s2,x,y,s,r,d));
+    cloud(s2,200,60,.9,.8); cloud(s2,980,80,.8,.75);
+  })();
+
+  /* ---------- Blossom branches in the corners of text sections ---------- */
+  function branch(svg,seed){
+    const r=rng(seed), g=mk('g',{},svg);
+    const pts=[[300,0],[262,26],[214,48],[160,74],[112,108],[64,134],[10,152]];
+    mk('path',{d:'M300 0C262 20 232 38 200 54S120 100 80 126S30 146 6 152',stroke:'#8A6574','stroke-width':5,fill:'none','stroke-linecap':'round'},g);
+    mk('path',{d:'M214 48C200 70 196 90 186 108M160 74C150 52 146 36 138 22M112 108C104 128 98 142 86 156',stroke:'#8A6574','stroke-width':2.5,fill:'none','stroke-linecap':'round'},g);
+    for(let i=0;i<17;i++){
+      const k=Math.floor(r()*(pts.length-1)), t=r(), a=pts[k], b=pts[k+1];
+      const x=lerp(a[0],b[0],t)+(r()-.5)*40, y=lerp(a[1],b[1],t)+r()*34-6, rr=5+r()*5, rot=r()*72;
+      for(let p=0;p<5;p++){const an=(rot+p*72)*Math.PI/180;mk('circle',{cx:(x+Math.cos(an)*rr*.9).toFixed(1),cy:(y+Math.sin(an)*rr*.9).toFixed(1),r:(rr*.62).toFixed(1),fill:PINKS[Math.floor(r()*PINKS.length)]},g)}
+      mk('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:(rr*.28).toFixed(1),fill:'#FFC96B'},g);
+    }
+  }
+  $$('.branch svg').forEach((s,i)=>branch(s,31+i*7));
+
+  if(!reduce){
+    const hero=$('#hero');
+    for(let i=0;i<12;i++){
+      const p=document.createElement('i'); p.className='petal'; const s=7+Math.random()*8;
+      p.style.cssText=`left:${(Math.random()*100).toFixed(1)}%;width:${s.toFixed(1)}px;height:${s.toFixed(1)}px;animation-duration:${(9+Math.random()*9).toFixed(1)}s;animation-delay:${(-Math.random()*14).toFixed(1)}s`;
+      hero.appendChild(p);
+    }
+  }
+
+  /* ================= Visualisations ================= */
+  const set=(el,t)=>{if(el.textContent!==t)el.textContent=t}, wd=(el,pct)=>{el.style.width=pct.toFixed(2)+'%'};
+
+  const defs={
+    dots:{
+      html:`<div><div class="kicker">Indian students in South Korea</div><div class="bignum"><span class="n">526</span><span class="chip x">×1.0</span></div></div>
+        <div class="dots"></div>
+        <div class="yl"><span>2020</span><div class="trk"><i class="g1 f"></i></div><span>2024</span></div>
+        <p class="src">1 dot = 10 students. Motion is animated between the two reported figures (526 and 1,095), not year-by-year data. Source: MEA Outbound Student Migration Corridor Dataset.</p>`,
+      init(root){
+        const q=s=>root.querySelector(s), box=q('.dots'), ds=[]; let last=-1;
+        for(let i=0;i<110;i++){const d=document.createElement('i');d.className=i<53?'base':'new';box.appendChild(d);ds.push(d)}
+        return p=>{
+          const v=lerp(526,1095,p);
+          set(q('.n'),fmt(v)); set(q('.x'),'×'+(v/526).toFixed(1)); wd(q('.f'),p*100);
+          const lit=Math.round(v/10);
+          if(lit!==last){ds.forEach((d,k)=>d.classList.toggle('on',k<lit));last=lit}
+        };
+      }
+    },
+    topik:{
+      html:`<div class="rows">
+          <div><div class="rl"><span>Applications</span><span class="chip xa">×1.0</span><b class="na">1,383</b></div><div class="trk"><i class="g1 fa"></i><u style="left:43.2%"></u></div></div>
+          <div><div class="rl"><span>Test-takers</span><span class="chip xb">×1.0</span><b class="nb">1,052</b></div><div class="trk"><i class="g2 fb"></i><u style="left:32.9%"></u></div></div>
+        </div>
+        <p class="src">Tick mark = starting figure. Both figures run from 2022 to 2025. Motion is animated between the two reported figures, not year-by-year data. Source: official TOPIK data.</p>`,
+      init(root){
+        const q=s=>root.querySelector(s);
+        return p=>{
+          const a=lerp(1383,2928,p), b=lerp(1052,2122,p);
+          set(q('.na'),fmt(a)); set(q('.nb'),fmt(b));
+          set(q('.xa'),'×'+(a/1383).toFixed(1)); set(q('.xb'),'×'+(b/1052).toFixed(1));
+          wd(q('.fa'),a/3200*100); wd(q('.fb'),b/3200*100);
+        };
+      }
+    },
+    market:{
+      html:`<div class="kicker">Korean products in Indian shopping carts</div>
+        <div class="s2">
+          <div class="ringbox">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><g transform="rotate(-90 50 50)" fill="none" stroke-linecap="round" stroke-width="9">
+              <circle cx="50" cy="50" r="40" stroke="rgba(74,44,79,.1)"/><circle cx="50" cy="50" r="28" stroke="rgba(74,44,79,.1)"/>
+              <circle class="ro" cx="50" cy="50" r="40" stroke="#4FC79B" stroke-dasharray="0 999"/>
+              <circle class="ri" cx="50" cy="50" r="28" stroke="#F4C13D" stroke-dasharray="0 999"/></g></svg>
+            <div class="rc"><b class="nr">0%</b><small>of Blinkit noodle sales</small></div>
+          </div>
+          <div class="rows">
+            <div><div class="rl"><span>K-beauty market</span><b class="na" style="font-size:1.2rem">$400M</b></div><div class="trk"><i class="g4 fa"></i></div></div>
+            <div><div class="rl"><span>Active buyers</span><b class="nb" style="font-size:1.2rem">11.9M</b></div><div class="trk"><i class="g3 fb"></i></div></div>
+          </div>
+        </div>
+        <p class="src">Outer ring: South Korean imports (34%). Inner ring: Samyang Buldak (18%). Market and buyers run 2024 → 2030 (projection). Sources: Datum Intelligence; Datum Intelligence–Kindlife.</p>`,
+      init(root){
+        const q=s=>root.querySelector(s), C1=2*Math.PI*40, C2=2*Math.PI*28;
+        return p=>{
+          q('.ro').setAttribute('stroke-dasharray',`${(C1*.34*p).toFixed(2)} 999`);
+          q('.ri').setAttribute('stroke-dasharray',`${(C2*.18*p).toFixed(2)} 999`);
+          set(q('.nr'),Math.round(34*p)+'%');
+          const m=lerp(400,1500,p), by=lerp(11.9,27,p);
+          set(q('.na'),'$'+fmt(m)+'M'); set(q('.nb'),p>.995?'27M+':by.toFixed(1)+'M');
+          wd(q('.fa'),m/1600*100); wd(q('.fb'),by/30*100);
+        };
+      }
+    },
+    towers:{
+      html:`<div class="city"></div>
+        <p class="src">Growth multiples worked out from the figures in this story; the periods differ. *K-beauty is a 2030 projection.</p>`,
+      init(root){
+        const city=root.querySelector('.city');
+        const T=[
+          {n:'Students to Korea',m:1095/526,c1:'#FFC2D8',c2:'#F27BA8'},
+          {n:'TOPIK applications',m:2928/1383,c1:'#C4E2FF',c2:'#7FB3EE'},
+          {n:'TOPIK test-takers',m:2122/1052,c1:'#DCD0FF',c2:'#A58BF2'},
+          {n:'K-beauty market*',m:1500/400,c1:'#FFEDAF',c2:'#FFB67A'}
+        ];
+        T.forEach(t=>{
+          const w=document.createElement('div'); w.className='tw';
+          w.innerHTML=`<div class="bld" style="--c1:${t.c1};--c2:${t.c2}"><span class="val">1.0×</span></div><div class="nm">${t.n}</div>`;
+          city.appendChild(w); t.el=w.querySelector('.bld'); t.val=w.querySelector('.val');
+        });
+        let cw=-1, avail=0;
+        return p=>{
+          if(city.clientWidth!==cw||!avail){
+            cw=city.clientWidth;
+            const nmh=parseFloat(getComputedStyle(city).getPropertyValue('--nmh'))||32;
+            avail=Math.max(0,city.clientHeight-nmh-40);
+          }
+          T.forEach(t=>{const m=lerp(1,t.m,p); t.el.style.height=(avail*m/4).toFixed(1)+'px'; set(t.val,m.toFixed(1)+'×')});
+        };
+      }
+    }
+  };
+
+  const vizzes=$$('[data-viz]').map(host=>{
+    const d=defs[host.dataset.viz]; host.innerHTML=d.html;
+    return {beat:host.closest('.beat'),upd:d.init(host),target:0,disp:-1};
+  });
+
+  /* ================= One scroll loop: read, then write, once per frame ================= */
+  const blocks=$$('.blk'), bar=$('#bar');
+  let raf=0, dirty=true;
+
+  function beatProgress(el,H){
+    const r=el.getBoundingClientRect();
+    return clamp(((H*.5-r.top)/Math.max(1,r.height-H*.5))/.85);
+  }
+
+  function measure(){
+    const H=innerHeight, y=Math.max(0,scrollY);
+    vizzes.forEach(v=>{v.target=beatProgress(v.beat,H)});
+    const line=sideBySide.matches?H*.5:H*.66;
+    blocks.forEach(b=>{
+      const r=b.getBoundingClientRect();
+      b.classList.toggle('on',Math.abs((r.top+r.bottom)/2-line)<H*.36);
+    });
+    const max=Math.max(1,document.documentElement.scrollHeight-H);
+    bar.style.width=clamp(y/max)*100+'%';
+    // walking forward: layers scale outward from the vanishing point, nearer layers faster
+    if(!reduce&&y<H*1.4){
+      const k=y/H;
+      heroLayers.forEach(l=>l.g.setAttribute('transform',`translate(600 412) scale(${(1+k*l.f).toFixed(4)}) translate(-600 -412)`));
+    }
+  }
+
+  function tick(){
+    if(dirty){dirty=false;measure()}
+    let moving=false;
+    vizzes.forEach(v=>{
+      const d=v.target-v.disp;
+      if(reduce||v.disp<0||Math.abs(d)<.0008){v.disp=v.target}else{v.disp+=d*.16;moving=true}
+      v.upd(v.disp);
+    });
+    raf=(moving||dirty)?requestAnimationFrame(tick):0;
+  }
+  function schedule(){dirty=true; if(!raf) raf=requestAnimationFrame(tick)}
+
+  addEventListener('scroll',schedule,{passive:true});
+  addEventListener('resize',schedule);
+  addEventListener('orientationchange',()=>setTimeout(schedule,250));
+  addEventListener('load',schedule);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(schedule);
+  schedule();
+})();
+</script>
+</body>
+</html>
